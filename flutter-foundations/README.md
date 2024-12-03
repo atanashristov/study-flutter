@@ -109,7 +109,7 @@ class MyApp extends StatelessWidget {
       ...
 ```
 
-The `home` parameter is no longer defined. This is because the enrite routing logic moves under `routerConfig` argument.
+The `home` parameter is no longer defined. This is because the entire routing logic moves under `routerConfig` argument.
 
 ```dart
 class MyApp extends StatelessWidget {
@@ -161,13 +161,22 @@ For example for the shopping cart we change this:
 onPressed: () => Navigator.of(context).push(
   MaterialPageRoute(
     fullscreenDialog: true,
+    // The fullscreenDialog property specifies whether the incoming route
+    // is a fullscreen modal dialog. On iOS, those routes
+    // animate from the bottom to the top rather than horizontally.
     builder: (_) => const ShoppingCartScreen(),
   ),
 ),
 ```
 
-to use wither `go` or `goNamed`:
+to use either `go` or `goNamed`:
 
 ```dart
 onPressed: () => GoRouter.of(context).go('/cart'),
+```
+
+We can use GoRoute extension methods on `context` such as `go`, `goNamed`, `push`, `pushNamed`, `canPop`, `pop`, `pushReplacement`, `pushReplacementNamed`, `replace` and `replaceNamed`.
+
+```dart
+onPressed: () => context.go('/cart'),
 ```
