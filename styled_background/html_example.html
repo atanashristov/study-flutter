@@ -1,0 +1,42 @@
+<html>
+  <style>
+    .demo {
+      min-width: 100%;
+      min-height: 100%;
+      background-image: url(./assets/images/BackgroundImage2.png);
+      background-repeat: no-repeat;
+
+      /* "contain", "cover", or custom: "Npx Npx" "N%  N%" "auto auto" and combinations of these
+       *
+       * "contain": Scales the image as large as possible within its container
+       *            without cropping or stretching the image.
+       * -> model.fit == BoxFit.contain
+       *
+       * "cover": Scales the image to the smallest possible size to fill the container,
+       *          The image is cropped either vertically or horizontally.
+       * -> model.fit == BoxFit.cover
+       *
+       * "Npx": Stretches the image in the corresponding dimension to the specified length.
+       *        Negative values are not allowed.
+       * -> model.size
+       */
+      background-size: contain;
+      /* left, center, right, 10px, 10%, -10px, -10% */
+      background-position-x: center;
+      /* top, center, bottom, 10px, 10%, -10px, -10% */
+      background-position-y: bottom;
+    }
+  </style>
+  <body style="background-color: gray">
+    <div
+      style="
+        margin: 10px;
+        /* width: 400px;
+        height: 600px; */
+        background-color: white;
+      "
+    >
+      <div class="demo"></div>
+    </div>
+  </body>
+</html>
