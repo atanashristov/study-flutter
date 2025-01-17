@@ -3,16 +3,87 @@ import 'package:styled_background/styled_background/styled_background.dart';
 
 class StyledBackgroundImage extends StatelessWidget {
   final StyledBackgroundImageModel model;
+  final Size bgSize;
 
   const StyledBackgroundImage({
     required this.model,
+    required this.bgSize,
     super.key,
   });
 
-  static final customSizeRegexp = RegExp(r'^(auto|\d+(px|%)) (auto|\d+(px|%))$');
-
   @override
   Widget build(BuildContext context) {
+    Widget? res;
+
+    if (bgSize.isEmpty) {
+      return SizedBox.shrink();
+    }
+
+    res = Image(
+      image: model.fileName.startsWith('http') ? NetworkImage(model.fileName) : AssetImage(model.fileName),
+      opacity: AlwaysStoppedAnimation(model.opacity),
+      width: model.sizeLength.$1,
+      height: model.sizeLength.$2,
+      fit: BoxFit.cover,
+      // fit: BoxFit.contain,
+      // alignment: Alignment.topLeft,
+    );
+
+    if (model.sizePercentage.$1 != null || model.sizePercentage.$2 != null) {
+      res = FractionallySizedBox(
+        widthFactor: model.sizePercentage.$1 != null ? model.sizePercentage.$1! / 100 : null,
+        heightFactor: model.sizePercentage.$2 != null ? model.sizePercentage.$2! / 100 : null,
+        child: res,
+      );
+      // } else if (model.fit != null) {
+      //   res = ConstrainedBox(
+      //     constraints: BoxConstraints.expand(),
+      //     child: FittedBox(
+      //       alignment: Alignment.topRight,
+      //       fit: model.fit!,
+      //       child: res,
+      //     ),
+      //   );
+    }
+
+    final alignment = Alignment(
+      ((model.positionPercentage.$1 ?? 0) + (model.offsetPercentage.$1 ?? 0)) * 2 / 100 - 1,
+      ((model.positionPercentage.$2 ?? 0) + (model.offsetPercentage.$2 ?? 0)) * 2 / 100 - 1,
+    );
+
+    res = Align(
+      alignment: alignment,
+      child: res,
+    );
+
+    if (model.fit != null) {
+      res = ConstrainedBox(
+        constraints: BoxConstraints.expand(),
+        child: FittedBox(
+          alignment: alignment,
+          fit: model.fit!,
+          child: res,
+        ),
+      );
+    }
+
+    res = ClipRect(
+      child: Transform.translate(
+        offset: Offset(
+          (model.positionLength.$1 ?? 0) + (model.offsetLength.$1 ?? 0),
+          (model.positionLength.$2 ?? 0) + (model.offsetLength.$2 ?? 0),
+        ),
+        child: res,
+      ),
+    );
+
+    return res;
+  }
+}
+
+/*
+    final customSizeRegexp = RegExp(r'^(auto|\d+(px|%)) (auto|\d+(px|%))$');
+
     const kDefaultAlignment = Alignment.topLeft;
     const kDefaultBoxConstraints = BoxConstraints.expand();
 
@@ -49,7 +120,7 @@ class StyledBackgroundImage extends StatelessWidget {
             width: imageWidth,
             height: imageHeight,
             fit: BoxFit.fill,
-            alignment: alignment,
+            // alignment: alignment,
           ),
         ),
       ),
@@ -115,7 +186,6 @@ class StyledBackgroundImage extends StatelessWidget {
     // TODO: bgImageSize - Large sizes in pixels do not extend, so it probably needs UnconstrainedBox
     // TODO: bgImageXOffset, bgImageXOffset - not yet implemented (in pixels always)
 
-/*
     if (imageWidth != null || imageHeight != null || widthPercentage != null || heightPercentage != null) {
       return Align(
         alignment: model.alignment ?? kDefaultAlignment,
@@ -206,5 +276,3 @@ class StyledBackgroundImage extends StatelessWidget {
     //   ),
     // );
 */
-  }
-}

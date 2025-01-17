@@ -10,7 +10,8 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _defaultConfig = StyledBackgroundConfig(
   bgColor: StyledBackgroundConstants.color,
   bgImageOpacity: StyledBackgroundConstants.imageOpacity,
-  bgImageFileName: 'assets/images/${StyledBackgroundConstants.imageFileName2}',
+  bgImageFileName:
+      'https://companieslogo.com/img/orig/ALKT-35963011.png?t=1720244490', // 'assets/images/${StyledBackgroundConstants.imageFileName2}',
   bgImageSize: StyledBackgroundConstants.imageSize,
   bgImagePosX: StyledBackgroundConstants.imagePosX,
   bgImagePosY: StyledBackgroundConstants.imagePosY,

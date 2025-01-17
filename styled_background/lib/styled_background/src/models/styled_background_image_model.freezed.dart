@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$StyledBackgroundImageModel {
-  /// Url or path to file location:
+  /// Url or path to file location. Examples:
   ///  - 'assets/images/BackgroundImage1.png'
   ///  - 'assets/images/BackgroundImage2.png'
   ///  - 'https://reflecthairstudio.com/assets/images/test/BackgroundImage2.png'
@@ -33,28 +33,28 @@ mixin _$StyledBackgroundImageModel {
 
   /// Length size (width, height) of the background image.
   /// If any of these is non-null, then it is width or the height of the image correspondingly.
-  /// Negative values are not allowed.
+  /// Negative values are not allowed
   (double?, double?) get sizeLength => throw _privateConstructorUsedError;
 
   /// Percentage size (width, height) of the background image to the background positioning area.
   /// If any of these is non-null, then it is width or the height percentage of the image correspondingly.
-  /// Negative values are not allowed.
+  /// Negative values are not allowed
   (double?, double?) get sizePercentage => throw _privateConstructorUsedError;
 
   /// Position in pixels (x, y) of the background image inside the background positioning area.
-  /// Negative values are allowed.
+  /// Negative values are allowed
   (double?, double?) get positionLength => throw _privateConstructorUsedError;
 
-  /// Offset position in percentage (x, y) of the background image inside the background positioning area.
-  /// Negative values are allowed.
+  /// Position in percentage (x, y) of the background image inside the background positioning area.
+  /// Negative values are allowed
   (double?, double?) get positionPercentage =>
       throw _privateConstructorUsedError;
 
-  /// Position in pixels (x, y) of the background image inside the background positioning area.
+  /// Offset in pixels (x, y) of the background image inside the background positioning area.
   /// Negative values are allowed.
   (double?, double?) get offsetLength => throw _privateConstructorUsedError;
 
-  /// Offset position in percentage (x, y) of the background image inside the background positioning area.
+  /// Offset in percentage (x, y) of the background image inside the background positioning area.
   /// Negative values are allowed.
   (double?, double?) get offsetPercentage => throw _privateConstructorUsedError;
 
@@ -265,7 +265,7 @@ class _$StyledBackgroundImageModelImpl implements _StyledBackgroundImageModel {
       this.offsetLength = const (null, null),
       this.offsetPercentage = const (null, null)});
 
-  /// Url or path to file location:
+  /// Url or path to file location. Examples:
   ///  - 'assets/images/BackgroundImage1.png'
   ///  - 'assets/images/BackgroundImage2.png'
   ///  - 'https://reflecthairstudio.com/assets/images/test/BackgroundImage2.png'
@@ -287,37 +287,37 @@ class _$StyledBackgroundImageModelImpl implements _StyledBackgroundImageModel {
 
   /// Length size (width, height) of the background image.
   /// If any of these is non-null, then it is width or the height of the image correspondingly.
-  /// Negative values are not allowed.
+  /// Negative values are not allowed
   @override
   @JsonKey()
   final (double?, double?) sizeLength;
 
   /// Percentage size (width, height) of the background image to the background positioning area.
   /// If any of these is non-null, then it is width or the height percentage of the image correspondingly.
-  /// Negative values are not allowed.
+  /// Negative values are not allowed
   @override
   @JsonKey()
   final (double?, double?) sizePercentage;
 
   /// Position in pixels (x, y) of the background image inside the background positioning area.
-  /// Negative values are allowed.
+  /// Negative values are allowed
   @override
   @JsonKey()
   final (double?, double?) positionLength;
 
-  /// Offset position in percentage (x, y) of the background image inside the background positioning area.
-  /// Negative values are allowed.
+  /// Position in percentage (x, y) of the background image inside the background positioning area.
+  /// Negative values are allowed
   @override
   @JsonKey()
   final (double?, double?) positionPercentage;
 
-  /// Position in pixels (x, y) of the background image inside the background positioning area.
+  /// Offset in pixels (x, y) of the background image inside the background positioning area.
   /// Negative values are allowed.
   @override
   @JsonKey()
   final (double?, double?) offsetLength;
 
-  /// Offset position in percentage (x, y) of the background image inside the background positioning area.
+  /// Offset in percentage (x, y) of the background image inside the background positioning area.
   /// Negative values are allowed.
   @override
   @JsonKey()
@@ -392,7 +392,7 @@ abstract class _StyledBackgroundImageModel
           final (double?, double?) offsetPercentage}) =
       _$StyledBackgroundImageModelImpl;
 
-  /// Url or path to file location:
+  /// Url or path to file location. Examples:
   ///  - 'assets/images/BackgroundImage1.png'
   ///  - 'assets/images/BackgroundImage2.png'
   ///  - 'https://reflecthairstudio.com/assets/images/test/BackgroundImage2.png'
@@ -413,32 +413,32 @@ abstract class _StyledBackgroundImageModel
 
   /// Length size (width, height) of the background image.
   /// If any of these is non-null, then it is width or the height of the image correspondingly.
-  /// Negative values are not allowed.
+  /// Negative values are not allowed
   @override
   (double?, double?) get sizeLength;
 
   /// Percentage size (width, height) of the background image to the background positioning area.
   /// If any of these is non-null, then it is width or the height percentage of the image correspondingly.
-  /// Negative values are not allowed.
+  /// Negative values are not allowed
   @override
   (double?, double?) get sizePercentage;
 
   /// Position in pixels (x, y) of the background image inside the background positioning area.
-  /// Negative values are allowed.
+  /// Negative values are allowed
   @override
   (double?, double?) get positionLength;
 
-  /// Offset position in percentage (x, y) of the background image inside the background positioning area.
-  /// Negative values are allowed.
+  /// Position in percentage (x, y) of the background image inside the background positioning area.
+  /// Negative values are allowed
   @override
   (double?, double?) get positionPercentage;
 
-  /// Position in pixels (x, y) of the background image inside the background positioning area.
+  /// Offset in pixels (x, y) of the background image inside the background positioning area.
   /// Negative values are allowed.
   @override
   (double?, double?) get offsetLength;
 
-  /// Offset position in percentage (x, y) of the background image inside the background positioning area.
+  /// Offset in percentage (x, y) of the background image inside the background positioning area.
   /// Negative values are allowed.
   @override
   (double?, double?) get offsetPercentage;

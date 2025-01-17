@@ -27,7 +27,7 @@ class StyledBackgroundModelBuilder {
   StyledBackgroundWidgetModel buildFromConfiguration(StyledBackgroundConfig config) {
     final result = StyledBackgroundWidgetModel(
       bgColor: config.bgColor,
-      bgImage: config.bgImageFileName == null
+      bgImage: (config.bgImageFileName ?? '').trim().isEmpty
           ? null
           : StyledBackgroundImageModel(
               fileName: config.bgImageFileName!,
@@ -38,7 +38,8 @@ class StyledBackgroundModelBuilder {
               sizePercentage: _getImageSize(config, symbol: '%'),
               positionLength: _getPosition(config, symbol: 'px'),
               positionPercentage: _getPosition(config, symbol: '%'),
-              offsetLength: _getOffset(config),
+              offsetLength: _getOffset(config, symbol: 'px'),
+              offsetPercentage: _getOffset(config, symbol: '%'),
             ),
     );
 
@@ -103,25 +104,26 @@ class StyledBackgroundModelBuilder {
     double? width = regExp.hasMatch(posX) ? double.tryParse(posX.replaceAll(symbol, '')) : null;
     double? height = regExp.hasMatch(posY) ? double.tryParse(posY.replaceAll(symbol, '')) : null;
 
-    if (width != null || height != null) {
-      return (width, height);
-    }
-
-    return (null, null);
+    return (width, height);
   }
 
-  (double?, double?) _getOffset(StyledBackgroundConfig config) {
+  (double?, double?) _getOffset(
+    StyledBackgroundConfig config, {
+    required String symbol,
+  }) {
+    assert(
+      _kValidSymbols.contains(symbol),
+      'Numeric values of image position can only be "px" or "%" and not "$symbol"',
+    );
+
     var offsetX = config.bgImageXOffset.trim();
     var offsetY = config.bgImageYOffset.trim();
+    var regExp = symbol == _kPixel ? _kPixelsRegExp : _kPercentageRegExp;
 
-    double? width = _kPixelsRegExp.hasMatch(offsetX) ? double.tryParse(offsetX.replaceAll(_kPixel, '')) : null;
-    double? height = _kPixelsRegExp.hasMatch(offsetY) ? double.tryParse(offsetY.replaceAll(_kPixel, '')) : null;
+    double? width = regExp.hasMatch(offsetX) ? double.tryParse(offsetX.replaceAll(symbol, '')) : null;
+    double? height = regExp.hasMatch(offsetY) ? double.tryParse(offsetY.replaceAll(symbol, '')) : null;
 
-    if (width != null || height != null) {
-      return (width, height);
-    }
-
-    return (null, null);
+    return (width, height);
   }
 
   /// Gets the image fit based in bgImageSize having
