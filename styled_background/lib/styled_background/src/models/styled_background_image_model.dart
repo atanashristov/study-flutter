@@ -41,7 +41,10 @@ class StyledBackgroundImageModel with _$StyledBackgroundImageModel {
 
     /// Offset in pixels (x, y) of the background image inside the background positioning area.
     /// Negative values are allowed.
-    /// Note: offset in percentage is not needed and not specified
     @Default((null, null)) (double?, double?) offsetLength,
+
+    /// Offset in percentage (x, y) of the background image inside the background positioning area.
+    /// Negative values are allowed.
+    @Default((null, null)) (double?, double?) offsetPercentage,
   }) = _StyledBackgroundImageModel;
 }

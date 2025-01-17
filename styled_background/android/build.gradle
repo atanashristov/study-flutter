@@ -1,7 +1,28 @@
+buildscript {
+    ext.kotlin_version = '2.0.0'
+    repositories {
+        maven { 
+            url "http://download.flutter.io" 
+            allowInsecureProtocol = true
+        }
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.3.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
 allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { 
+            url "http://download.flutter.io"
+            allowInsecureProtocol = true
+        }
     }
 }
 

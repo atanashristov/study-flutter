@@ -1,42 +1,74 @@
 <html>
   <style>
-    .demo {
-      min-width: 100%;
-      min-height: 100%;
-      background-image: url(./assets/images/BackgroundImage2.png);
-      background-repeat: no-repeat;
+      /*
+          mobileAcctBgImageSize     => "contain", "cover" or custom - "Npx Npx" "N%  N%" "auto auto" and combinations of these
+                                        default (if not specified) => "auto auto"
 
-      /* "contain", "cover", or custom: "Npx Npx" "N%  N%" "auto auto" and combinations of these
-       *
-       * "contain": Scales the image as large as possible within its container
-       *            without cropping or stretching the image.
-       * -> model.fit == BoxFit.contain
-       *
-       * "cover": Scales the image to the smallest possible size to fill the container,
-       *          The image is cropped either vertically or horizontally.
-       * -> model.fit == BoxFit.cover
-       *
-       * "Npx": Stretches the image in the corresponding dimension to the specified length.
-       *        Negative values are not allowed.
-       * -> model.size
-       */
-      background-size: contain;
-      /* left, center, right, 10px, 10%, -10px, -10% */
-      background-position-x: center;
-      /* top, center, bottom, 10px, 10%, -10px, -10% */
-      background-position-y: bottom;
-    }
+          mobileAcctBgImagePosX     => "left", "center" "right" or custom - "Npx", "-Npx", "N%", "-N%"
+                                        default (if not specified) => "left"
+
+          mobileAcctBgImageXOffset  => "Npx", "-Npx", "N%"", "-N%"
+                                        default (if not specified) => "0px"
+
+          mobileAcctBgImagePosY     => "top", "center", "bottom" or custom - "Npx", "-Npx", "N%", "-N%"
+                                        default (if not specified) => "top"
+
+          mobileAcctBgImageYOffset  => "Npx", "-Npx", "N%"", "-N%"
+                                        default (if not specified) => "0px"
+      */
+
+      html { box-sizing: border-box;}
+      .wrapper {
+        width: 448px;
+        height: 962px;
+        border: 1px solid black;
+        margin: 25px auto;
+        position:relative;
+      }
+
+      .header {
+        width:100%;
+        height: 100px;
+        background:gray;
+      }
+
+      .body {
+        position:absolute;
+        top:100px;
+        bottom:65px;
+        width:100%; 
+        background-image:url("https://companieslogo.com/img/orig/ALKT-35963011.png?t=1720244490");
+        background-size: contain;
+        background-repeat:no-repeat;
+
+        /* right align with offset x-axis nudged to the right 60px. 50% or "center" for y axis */
+        background-position: calc(100% + 60px) 50%;
+
+        /* left aligned with negative offset x-axis to nudge to the left 60px. 50% or "center" for y axis */
+        /* background-position: calc(0% - 60px) 50%; */
+
+        /* right align with offset of negative 15px x-axis.  50% or "center" for y axis */
+        /* background-position: calc(100% - 15px) 50%; */
+
+        /* right align with 50% positive offset x-axis.  Same as 150%. 50% or "center" for y axis */
+        /* background-position: calc(100% + 50%) 50%; */
+
+        /* background-position: 100% 50%; */
+      }
+
+      .shortcutbar {
+        position:absolute;
+        bottom:0;
+        height: 65px;
+        width:100%;
+        background:gray;
+      }
   </style>
-  <body style="background-color: gray">
-    <div
-      style="
-        margin: 10px;
-        /* width: 400px;
-        height: 600px; */
-        background-color: white;
-      "
-    >
-      <div class="demo"></div>
+  <body>
+    <div class="wrapper">
+      <div class="header"></div>
+      <div class="body"></div>
+      <div class="shortcutbar"></div>
     </div>
   </body>
 </html>

@@ -9,9 +9,9 @@ enum ImageOffsetInputValidationError {
   String text() {
     switch (this) {
       case ImageOffsetInputValidationError.invalid:
-        return '''Npx please...''';
+        return '''Npx, N%, -Npx, -N% please...''';
       case ImageOffsetInputValidationError.empty:
-        return '''Please enter offset Npx''';
+        return '''One of Npx, N%, -Npx, -N%''';
     }
   }
 }
@@ -22,7 +22,7 @@ class ImageOffsetInput extends FormzInput<String, ImageOffsetInputValidationErro
   ImageOffsetInput.dirty([super.value = '']) : super.dirty();
 
   static final _regExp = [
-    RegExp(r'\d+px'),
+    RegExp(r'\d+(px|%)'),
   ];
 
   @override

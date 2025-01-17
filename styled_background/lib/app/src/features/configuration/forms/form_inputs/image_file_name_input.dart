@@ -34,7 +34,7 @@ class ImageFileNameInput extends FormzInput<String, ImageFileNameInputValidation
   ImageFileNameInputValidationError? validator(String value) {
     if (value.isBlank()) {
       return ImageFileNameInputValidationError.empty;
-    } else if (!_validFileNames.contains(value)) {
+    } else if (!value.toLowerCase().startsWith('https://') && !_validFileNames.contains(value)) {
       return ImageFileNameInputValidationError.invalid;
     }
 
