@@ -19,37 +19,52 @@ class StyledBackgroundImage extends StatelessWidget {
       return SizedBox.shrink();
     }
 
-    res = Image(
-      image: model.fileName.startsWith('http') ? NetworkImage(model.fileName) : AssetImage(model.fileName),
-      opacity: AlwaysStoppedAnimation(model.opacity),
-      width: model.sizeLength.$1,
-      height: model.sizeLength.$2,
-      fit: BoxFit.cover,
-      // fit: BoxFit.contain,
-      // alignment: Alignment.topLeft,
-    );
-
-    if (model.sizePercentage.$1 != null || model.sizePercentage.$2 != null) {
-      res = FractionallySizedBox(
-        widthFactor: model.sizePercentage.$1 != null ? model.sizePercentage.$1! / 100 : null,
-        heightFactor: model.sizePercentage.$2 != null ? model.sizePercentage.$2! / 100 : null,
-        child: res,
-      );
-      // } else if (model.fit != null) {
-      //   res = ConstrainedBox(
-      //     constraints: BoxConstraints.expand(),
-      //     child: FittedBox(
-      //       alignment: Alignment.topRight,
-      //       fit: model.fit!,
-      //       child: res,
-      //     ),
-      //   );
-    }
-
     final alignment = Alignment(
       ((model.positionPercentage.$1 ?? 0) + (model.offsetPercentage.$1 ?? 0)) * 2 / 100 - 1,
       ((model.positionPercentage.$2 ?? 0) + (model.offsetPercentage.$2 ?? 0)) * 2 / 100 - 1,
     );
+
+    final imgWidth =
+        model.sizePercentage.$1 != null ? model.sizePercentage.$1! * bgSize.width / 100 : model.sizeLength.$1;
+    final imgHeight =
+        model.sizePercentage.$2 != null ? model.sizePercentage.$2! * bgSize.height / 100 : model.sizeLength.$2;
+
+    BoxFit? imgFit;
+    if (model.fit != null) {
+      imgFit = BoxFit.cover;
+    } else if (imgWidth != null || imgHeight != null) {
+      if ((imgWidth ?? 0) <= bgSize.width + .5 && (imgHeight ?? 0) <= bgSize.height + .5) {
+        imgFit = BoxFit.fill;
+      } else {
+        // TODO
+      }
+    }
+
+    res = Image(
+      image: model.fileName.startsWith('http') ? NetworkImage(model.fileName) : AssetImage(model.fileName),
+      opacity: AlwaysStoppedAnimation(model.opacity),
+      width: imgWidth,
+      height: imgHeight,
+      fit: imgFit,
+      // fit: BoxFit.contain,
+      alignment: (model.fit != null) ? Alignment.center : Alignment.topLeft,
+    );
+
+    // if (model.sizePercentage.$1 != null || model.sizePercentage.$2 != null) {
+    //   res = FractionallySizedBox(
+    //     widthFactor: model.sizePercentage.$1 != null ? model.sizePercentage.$1! * bgSize.width / 100 : null,
+    //     heightFactor: model.sizePercentage.$2 != null ? model.sizePercentage.$2! * bgSize.width / 100 : null,
+    //     child: res,
+    //   );
+    // }
+
+    // if (model.fit == null) {
+    //   res = UnconstrainedBox(
+    //     clipBehavior: Clip.none,
+    //     alignment: alignment,
+    //     child: res,
+    //   );
+    // }
 
     res = Align(
       alignment: alignment,
