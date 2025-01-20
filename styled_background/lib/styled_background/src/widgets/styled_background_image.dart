@@ -36,7 +36,7 @@ class StyledBackgroundImage extends StatelessWidget {
       if ((imgWidth ?? 0) <= bgSize.width + .5 && (imgHeight ?? 0) <= bgSize.height + .5) {
         imgFit = BoxFit.fill;
       } else {
-        // TODO
+        imgFit = BoxFit.fill;
       }
     }
 
@@ -50,13 +50,20 @@ class StyledBackgroundImage extends StatelessWidget {
       alignment: (model.fit != null) ? Alignment.center : Alignment.topLeft,
     );
 
-    // if (model.sizePercentage.$1 != null || model.sizePercentage.$2 != null) {
-    //   res = FractionallySizedBox(
-    //     widthFactor: model.sizePercentage.$1 != null ? model.sizePercentage.$1! * bgSize.width / 100 : null,
-    //     heightFactor: model.sizePercentage.$2 != null ? model.sizePercentage.$2! * bgSize.width / 100 : null,
-    //     child: res,
-    //   );
-    // }
+    if (model.fit == null) {
+      res = OverflowBox(
+        maxWidth: (imgWidth ?? 0) > bgSize.width ? imgWidth : double.infinity,
+        maxHeight: (imgHeight ?? 0) > bgSize.height ? imgHeight : double.infinity,
+        minWidth: (imgWidth ?? 0) > 0 && (imgWidth ?? 0) < bgSize.width ? imgWidth : bgSize.width,
+        minHeight: (imgHeight ?? 0) > 0 && (imgHeight ?? 0) < bgSize.height ? imgHeight : bgSize.height,
+        alignment: alignment,
+        child: UnconstrainedBox(
+          alignment: alignment,
+          clipBehavior: Clip.none,
+          child: res,
+        ),
+      );
+    }
 
     // if (model.fit == null) {
     //   res = UnconstrainedBox(
