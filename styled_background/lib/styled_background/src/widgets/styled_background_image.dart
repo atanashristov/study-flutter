@@ -5,6 +5,12 @@ class StyledBackgroundImage extends StatelessWidget {
   final StyledBackgroundImageModel model;
   final Size bgSize;
 
+// TODO:
+// - Recommendations by Brennan: Use cubit to set the render size and do not recalculate all the model every time coming back to accounts page.
+// - Document well the code
+// - Look at that `imgFit = BoxFit.fill;` looks duplicated below
+// - Create lots of golden tests to ensure stability on future changes
+
   const StyledBackgroundImage({
     required this.model,
     required this.bgSize,
